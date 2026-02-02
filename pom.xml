@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- ↑ Объявление XML и схемы. Это технический заголовок, его всегда копируют как есть. -->
+
+    <modelVersion>4.0.0</modelVersion>
+    <!-- ↑ Версия модели POM. Всегда 4.0.0 для современных проектов. -->
+
+    <!-- ↓ "Координаты" проекта — как уникальный ID в мире Maven -->
+    <groupId>com.9ew1nd</groupId>
+    <!-- Название организации (часто перевёрнутый домен). Можно оставить как есть или сделать com.github.9ew1nd -->
+
+    <artifactId>order-system</artifactId>
+    <!-- Название самого проекта (библиотеки или приложения). Будет частью имени итогового JAR-файла. -->
+
+    <version>1.0-SNAPSHOT</version>
+    <!-- Версия проекта. SNAPSHOT означает, что это "черновая", разрабатываемая версия. -->
+
+    <!-- ↓ Настройки свойств проекта -->
+    <properties>
+        <!-- Указываем, что наш исходный код написан на Java 17 -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <!-- Указываем, что нужно генерировать байт-код для Java 17 -->
+        <maven.compiler.target>17</maven.compiler.target>
+        <!-- Кодировка исходных файлов. UTF-8 поддерживает кириллицу и спецсимволы. -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- ↓ САМАЯ ВАЖНАЯ ЧАСТЬ — объявление зависимостей (библиотек) -->
+    <dependencies>
+        
+        <!-- Зависимость 1: SLF4J API (интерфейс для логирования) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.9</version>
+            <!-- Без scope — зависимость доступна везде (компиляция, тесты, запуск) -->
+        </dependency>
+
+        <!-- Зависимость 2: Простая реализация SLF4J (будет выводить логи в консоль) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
+            <!-- Эта реализация нужна только при запуске, но так проще для начала -->
+        </dependency>
+        
+        <!-- Зависимость 3: JUnit Jupiter (современная версия JUnit для тестирования) -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.0</version>
+            <!-- scope="test" значит, что библиотека НЕ попадёт в финальный JAR,
+                 а будет доступна только при компиляции и запуске тестов -->
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+</project>
