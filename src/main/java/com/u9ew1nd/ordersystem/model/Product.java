@@ -16,8 +16,8 @@ class Product{
         if (price_ == null || price_.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Price cannot be null or negative");
         }
-        if (stockQuantity_ <= 0){
-            throw new IllegalArgumentException("Количество не может быть неположительным");
+        if (stockQuantity_ < 0){
+            throw new IllegalArgumentException("Количество не может быть отрицательным");
         }
         uuid = UUID.randomUUID();
         name = name_;
@@ -32,8 +32,8 @@ class Product{
         if (price_ == null || price_.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Price cannot be null or negative");
         }
-        if (stockQuantity_ <= 0) {
-            throw new IllegalArgumentException("Количество не может быть неположительным");
+        if (stockQuantity_ < 0) {
+            throw new IllegalArgumentException("Количество не может быть отрицательным");
         }
         uuid = uuid_;
         name = name_;
