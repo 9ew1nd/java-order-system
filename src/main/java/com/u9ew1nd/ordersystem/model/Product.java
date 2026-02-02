@@ -10,16 +10,32 @@ class Product{
     private int stockQuantity;
 
     Product(String name_, BigDecimal price_, int stockQuantity_){
-        if (name == null || name.trim().isEmpty()) {
+        if (name_ == null || name_.trim().isEmpty()) {
             throw new IllegalArgumentException("Product name cannot be null or empty");
         }
-        if (price == null || price.compareTo(BigDecimal.ZERO) < 0) {
+        if (price_ == null || price_.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Price cannot be null or negative");
         }
         if (stockQuantity_ <= 0){
             throw new IllegalArgumentException("Количество не может быть неположительным");
         }
         uuid = UUID.randomUUID();
+        name = name_;
+        setPrice(price_);
+        setStockQuantity(stockQuantity_);
+    }
+
+    Product(UUID uuid_, String name_, BigDecimal price_, int stockQuantity_) {
+        if (name_ == null || name_.trim().isEmpty()) {
+            throw new IllegalArgumentException("Product name cannot be null or empty");
+        }
+        if (price_ == null || price_.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Price cannot be null or negative");
+        }
+        if (stockQuantity_ <= 0) {
+            throw new IllegalArgumentException("Количество не может быть неположительным");
+        }
+        uuid = uuid_;
         name = name_;
         setPrice(price_);
         setStockQuantity(stockQuantity_);
@@ -38,7 +54,9 @@ class Product{
     }
 
     public void setPrice(BigDecimal price) {
-        this.price = price;
+        if (price == null || price.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Price cannot be null or negative");}
+        else{this.price = price;}
     }
 
     public int getStockQuantity() {
@@ -46,7 +64,10 @@ class Product{
     }
 
     public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
+        if (stockQuantity <= 0){
+            throw new IllegalArgumentException("Количество не может быть неположительным");}
+        else{
+        this.stockQuantity = stockQuantity;}
     }
 
     @Override
