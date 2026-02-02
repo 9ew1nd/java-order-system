@@ -10,8 +10,17 @@ class Product{
     private int stockQuantity;
 
     Product(String name_, BigDecimal price_, int stockQuantity_){
-        setUuid(UUID.randomUUID());
-        setName(name_);
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Product name cannot be null or empty");
+        }
+        if (price == null || price.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Price cannot be null or negative");
+        }
+        if (stockQuantity_ <= 0){
+            throw new IllegalArgumentException("Количество не может быть неположительным");
+        }
+        uuid = UUID.randomUUID();
+        name = name_;
         setPrice(price_);
         setStockQuantity(stockQuantity_);
     }
@@ -24,16 +33,8 @@ class Product{
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setPrice(BigDecimal price) {
