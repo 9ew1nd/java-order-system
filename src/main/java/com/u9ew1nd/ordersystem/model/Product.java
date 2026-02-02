@@ -9,8 +9,8 @@ class Product{
     private BigDecimal price;
     private int stockQuantity;
 
-    Product(UUID uuid_, String name_, BigDecimal price_, int stockQuantity_){
-        setUuid(uuid_);
+    Product(String name_, BigDecimal price_, int stockQuantity_){
+        setUuid(UUID.randomUUID());
         setName(name_);
         setPrice(price_);
         setStockQuantity(stockQuantity_);
@@ -48,6 +48,20 @@ class Product{
         this.stockQuantity = stockQuantity;
     }
 
+    @Override
+    public int hashCode(){
+        return uuid.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj instanceof Product){
+            return uuid == ((Product) obj).getUuid();
+        }
+        else{
+            return false;
+        }
+    }
 
 
 }
